@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { Input } from './Components/InputField'; 
 
 function App() {
+
+  const [initialUserInput, setInitialUserInput] = useState("");
+  const [toDoList, setToDoList] = useState([])
+
+  const handleUserInput = (userInput) => {
+    setToDoList(toDoList.concat(userInput))
+  };
+
+  const handleIntialInputChange = (inputChange) => {
+    setInitialUserInput(inputChange)
+  };
+
+  const handleClearInputField = () => {
+    setInitialUserInput(" ")
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     < Input onClear={handleClearInputField} onUserInput={ handleUserInput } userInput={initialUserInput} onHandleChange={handleIntialInputChange}/>
     </div>
   );
 }
