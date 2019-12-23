@@ -1,10 +1,13 @@
 import React from 'react'
 
-export const Delete = () => {
+export const Delete = ({ currentIndex, onDeleteFunction }) => {
+  const callIndex = () => {
+    onDeleteFunction(currentIndex)
+  };
 
   return(
     <div>
-      <button>Delete</button>
+      <button onClick={callIndex}>Delete</button>
     </div>  
   );
 };

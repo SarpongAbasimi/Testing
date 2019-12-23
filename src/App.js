@@ -2,14 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import { Input } from './Components/InputField'; 
 import { Card } from './Components/Card';
-import { Delete } from './Components/Delete'
+
 function App() {
 
   const [initialUserInput, setInitialUserInput] = useState("");
   const [toDoList, setToDoList] = useState([])
 
   const handleUserInput = (userInput) => {
-    console.log(`The user typed ${userInput}`)
     setToDoList(toDoList.concat(userInput))
   };
 
@@ -21,15 +20,14 @@ function App() {
     setInitialUserInput(" ")
   };
 
+  const handleDeleteFromToDos = (index) => {
+    setToDoList(toDoList.filter((e, indexes ) => index !== indexes ))
+  };
+
   return (
     <div className="App">
      < Input onClear={handleClearInputField} onUserInput={ handleUserInput } userInput={initialUserInput} onHandleChange={handleIntialInputChange}/>
-     <Card  render={() => (
-       {
-        userToDos: toDoList,
-        DeleteButton:  Delete 
-       }
-     )} />
+     <Card userToDos={toDoList} onDelete={handleDeleteFromToDos}/>
     </div>
   );
 }
