@@ -26,4 +26,15 @@ describe('InputField', ()=> {
     const submit = wrapper.find('input').last();
     expect(submit.props().value).toBe('Add item');
   });
+
+  describe('A user can populate the input', ()=> {
+    let userInputData = 'I eat a lot';
+
+    beforeEach(()=> {
+      const input = wrapper.find('input').at(0);
+      input.simulate('change', {
+        // target: {name: 'textField', value: userInputData}
+      })
+    });
+  });
 });
