@@ -24,10 +24,24 @@ function App() {
     setToDoList(toDoList.filter((e, indexes ) => index !== indexes ))
   };
 
+  const onHandleUserChange = (e) =>{
+    setInitialUserInput(e.target.value)
+  };
+
+  const testSubmit = (e) => {
+    e.preventDefault();
+    setToDoList(toDoList.concat(e.target.textField.value));
+    console.log(e.target.textField.value)
+  };
+
   return (
     <div className="App">
-     < Input onClear={handleClearInputField} onUserInput={ handleUserInput } userInput={initialUserInput} onHandleChange={handleIntialInputChange}/>
-     <Card userToDos={toDoList} onDelete={handleDeleteFromToDos}/>
+     {/* < Input onClear={handleClearInputField} onUserInput={ handleUserInput } userInput={initialUserInput} onHandleChange={handleIntialInputChange}/>
+     <Card userToDos={toDoList} onDelete={handleDeleteFromToDos}/> */}
+     <form onSubmit={testSubmit}>
+       <input type='text' name='textField' value={initialUserInput} onChange={onHandleUserChange}></input>
+       <input type='submit' name='submitField'></input>
+     </form>
     </div>
   );
 }
